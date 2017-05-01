@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::group(['middleware'=>'web'], function(){
@@ -34,7 +34,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'], function(){
     Route::group(['prefix'=>'pages'], function(){
 
         //admin/pages
-        Route::get('/', ['uses'=>'PagesControler@execute','as'=>'pages']);
+        Route::get('/', ['uses'=>'PagesController@execute','as'=>'pages']);
 
         //admin/pages/add
         Route::match(['get','post'], '/add', ['uses'=>'PagesAddController@execute','as'=>'pagesAdd']);
@@ -49,7 +49,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'], function(){
     Route::group(['prefix'=>'portfolios'], function(){
 
         //admin/portfolios
-        Route::get('/', ['uses'=>'portfoliosControler@execute','as'=>'portfolios']);
+        Route::get('/', ['uses'=>'portfoliosController@execute','as'=>'portfolios']);
 
         //admin/portfolios/add
         Route::match(['get','post'], '/add', ['uses'=>'portfoliosAddController@execute','as'=>'portfoliosAdd']);
@@ -64,7 +64,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'], function(){
     Route::group(['prefix'=>'services'], function(){
 
         //admin/services
-        Route::get('/', ['uses'=>'servicesControler@execute','as'=>'services']);
+        Route::get('/', ['uses'=>'servicesController@execute','as'=>'services']);
 
         //admin/services/add
         Route::match(['get','post'], '/add', ['uses'=>'servicesAddController@execute','as'=>'servicessAdd']);
