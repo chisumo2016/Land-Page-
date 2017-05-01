@@ -9,6 +9,8 @@ use App\Service;
 use App\Portifolio;
 use App\People;
 
+USE DB;
+
 class IndexController extends Controller
 {
     //
@@ -18,6 +20,11 @@ class IndexController extends Controller
         $portifolios = Portifolio::get(array('name','filters','images'));
         $services    = Service::where('id', '<', 20)->get();
         $peoples     = People::take(3)->get();
+
+        $tags = DB::table('portifolios')->distinct()->lists('filter');
+
+
+
 
         $menu  = [];
         foreach ($pages  as $page) {
@@ -38,10 +45,11 @@ class IndexController extends Controller
             return view('index', array(
 
                 'menu'           =>  $menu,
-                'pages'          => $pages,
+                'pages'          =>  $pages,
                 'services'       =>  $services,
                 'portifolio'     =>  $portifolios,
-                'peoples'        =>    $peoples,
+                'peoples'        =>  $peoples,
+                'tags'           =>  $tags,
 
             ));
 
